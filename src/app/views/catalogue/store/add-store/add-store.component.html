@@ -1,0 +1,163 @@
+<div class="container-fluid p-0">
+  <form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name">Name :</label>
+          <input
+            type="text"
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': submitted && f.name.errors
+            }"
+            class="form-control"
+            placeholder="Enter Name"
+            id="name"
+          />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="label">Location :</label>
+          <input
+            type="text"
+            formControlName="location"
+            [ngClass]="{
+              'is-invalid': submitted && f.location.errors
+            }"
+            class="form-control"
+            placeholder="Enter Location"
+            id="location"
+          />
+          <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+            <div *ngIf="f.location.errors.required">Location is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="label">Phone :</label>
+          <input
+            type="text"
+            formControlName="phone"
+            [ngClass]="{
+              'is-invalid': submitted && f.phone.errors
+            }"
+            class="form-control"
+            placeholder="Enter Phone"
+            id="phone"
+          />
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Phone is required</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="isEnabled"
+              [ngClass]="{
+                'is-invalid': submitted && f.isEnabled.errors
+              }"
+              type="checkbox"
+            />
+            Is Enabled
+          </label>
+          <div *ngIf="submitted && f.isEnabled.errors" class="invalid-feedback">
+            <div *ngIf="f.isEnabled.errors.required">Field is required</div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-12">
+        <div class="form-group">
+          <label for="label">Phone :</label>
+          <textarea
+            class="form-control"
+            formControlName="phone"
+            [ngClass]="{
+              'is-invalid': submitted && f.phone.errors
+            }"
+            rows="3"
+            id="phone"
+          ></textarea>
+          <div
+            *ngIf="submitted && f.phone.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.phone.errors.required">
+              Phone is required
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-8">
+        <mat-form-field class="example-full-width">
+          <mat-label>Store Keeper</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Attributes"
+            matInput
+            (keyup)="onKeyUpEvent($event)"
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of attributesList"
+              [value]="option.name"
+              (onSelectionChange)="attributeSelect(option)"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="col-md-8" *ngIf="selectedAttributes.length > 0">
+        <mat-card>
+          <p>Selected Store Keeper</p>
+          <hr />
+          <div
+            cdkDropList
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let attribute of selectedAttributes"
+              cdkDrag
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text_name">
+                  {{ attribute.name | uppercase }}
+                </div>
+                <mat-chip-list>
+                  <mat-chip color="primary" selected>{{
+                    attribute.label | uppercase
+                  }}</mat-chip>
+                </mat-chip-list>
+                <div>
+                  <button
+                    mat-mini-fab
+                    color="warn"
+                    (click)="deleteAttribute(attribute)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </div>
+  </form>
+</div>

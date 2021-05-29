@@ -12,6 +12,9 @@ import { AdminGuard } from "./admin/admin.guard";
 import { UserComponent } from "./views/catalogue/users/users.component";
 import { AddUserComponent } from "./views/catalogue/add-user/add-user.component";
 import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.component";
+import { StoreListComponent } from "./views/catalogue/store/sub-store/sub-store-list.component";
+import { AddStoreComponent } from "./views/catalogue/store/add-store/add-store.component";
+import { EditStoreComponent } from "./views/catalogue/store/edit-store/edit-store.component";
 
 export const routes: Routes = [
   {
@@ -73,6 +76,27 @@ export const routes: Routes = [
         component: EditUserComponent,
         data: {
           title: "Edit User",
+        },
+      },
+      {
+        path: "stores",
+        component: StoreListComponent,
+        data: {
+          title: "Store",
+        },
+      },
+      {
+        path: "add-stores",
+        component: AddStoreComponent,
+        data: {
+          title: "Create Store",
+        },
+      },
+      {
+        path: "edit-stores/:storeId",
+        component: EditStoreComponent,
+        data: {
+          title: "Edit Store",
         },
       }
     ],
