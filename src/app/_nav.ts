@@ -17,3 +17,18 @@ export const navItems: INavData[] = [
     icon: "icon-puzzle",
   }
 ];
+
+
+export const subUserNavItems: INavData[] = [ 
+  {
+    name: "Stores",
+    url: "/stores",
+    icon: "icon-puzzle",
+  },
+  {
+    name: "Products",
+    url: "/products",
+    icon: "icon-puzzle",
+  }
+];
+

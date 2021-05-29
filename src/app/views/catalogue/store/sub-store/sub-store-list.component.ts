@@ -15,6 +15,8 @@ export class StoreListComponent implements OnInit {
   public pageSize = 8;
   public currentPage = 1;
   searchValue: String = "";
+  role: String = "";
+
 
   constructor(
     private subCategory: SubCategoryService,
@@ -25,6 +27,10 @@ export class StoreListComponent implements OnInit {
   ngOnInit(): void {
     console.log("called");
     this.getListSubCategories();
+    let userRole = localStorage.getItem("role");
+    if (userRole != undefined && userRole != null) {
+      this.role = userRole;
+    }
   }
 
   getListSubCategories() {

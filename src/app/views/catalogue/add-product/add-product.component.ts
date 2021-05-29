@@ -101,7 +101,6 @@ export class AddProductComponent implements OnInit {
 
   onSubmit() {
     console.log("clcked");
-    alert(":")
     this.submitted = true;
     if (this.categoryForm.invalid) {
       return;

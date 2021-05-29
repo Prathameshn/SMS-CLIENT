@@ -48,15 +48,17 @@ export class AddStoreComponent implements OnInit {
 
   onKeyUpEvent(event: any) {
     // console.log(event.target.value);
-    this.subCategory.getAttributesList(event.target.value).subscribe(
-      (res) => {
-        console.log("data", res);
-        this.attributesList = res.users;
-      },
-      (error) => {
-        console.log("error", error);
-      }
-    );
+    if(event.target.value.length){
+      this.subCategory.getAttributesList(event.target.value).subscribe(
+        (res) => {
+          console.log("data", res);
+          this.attributesList = res.users;
+        },
+        (error) => {
+          console.log("error", error);
+        }
+      );
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -74,22 +76,10 @@ export class AddStoreComponent implements OnInit {
   }
 
   attributeSelect(event) {
+    console.log(event)
     this.selectedAttributes = []
     this.selectedAttributes.push(event)
     this.myControl.reset("");
-    // let duplicateValue = this.selectedAttributes.find((x) => x.id === event.id);
-    // // console.log("_duplicate", duplicateValue);
-    // if (duplicateValue == undefined) {
-    //   this.selectedAttributes.push(event);
-    //   this.myControl.reset("");
-    // } else {
-    //   this._snackBar.open(`${event.name} is already Selected.`, "End now", {
-    //     duration: 1000,
-    //     horizontalPosition: this.horizontalPosition,
-    //     verticalPosition: this.verticalPosition,
-    //   });
-    // }
-    // console.log("_duplicate", this.selectedAttributes);
   }
 
   get f() {
