@@ -9,6 +9,9 @@ import { P500Component } from "./views/error/500.component";
 import { LoginComponent } from "./views/login/login.component";
 import { RegisterComponent } from "./views/register/register.component";
 import { AdminGuard } from "./admin/admin.guard";
+import { UserComponent } from "./views/catalogue/users/users.component";
+import { AddUserComponent } from "./views/catalogue/add-user/add-user.component";
+import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.component";
 
 export const routes: Routes = [
   {
@@ -43,6 +46,36 @@ export const routes: Routes = [
     data: {
       title: "Register Page",
     },
+  },
+  {
+    path: "",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "Home",
+    },
+    children: [
+      {
+        path: "users",
+        component: UserComponent,
+        data: {
+          title: "User",
+        },
+      },
+      {
+        path: "add-user",
+        component: AddUserComponent,
+        data: {
+          title: "Create User",
+        },
+      },
+      {
+        path: "edit-user/:userId",
+        component: EditUserComponent,
+        data: {
+          title: "Edit User",
+        },
+      }
+    ],
   },
   { path: "**", component: P404Component },
 ];

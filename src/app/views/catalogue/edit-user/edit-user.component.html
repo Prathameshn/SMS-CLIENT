@@ -1,0 +1,122 @@
+<div class="container-fluid p-0">
+  <form [formGroup]="editAttributeForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name">Name :</label>
+          <input
+            type="text"
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': submitted && f.name.errors
+            }"
+            class="form-control"
+            placeholder="Enter Name"
+            id="name"
+          />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input
+            type="text"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid': submitted && f.email.errors
+            }"
+            class="form-control"
+            placeholder="Enter Email"
+            id="email"
+          />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="password">Password :</label>
+          <input
+            type="text"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': submitted && f.password.errors
+            }"
+            class="form-control"
+            placeholder="Enter Password"
+            id="password"
+          />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="isEnabled"
+              [ngClass]="{
+                'is-invalid': submitted && f.isEnabled.errors
+              }"
+              type="checkbox"
+            />
+            Is Enabled
+          </label>
+          <div *ngIf="submitted && f.isEnabled.errors" class="invalid-feedback">
+            <div *ngIf="f.isEnabled.errors.required">Field is required</div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-12">
+        <div class="form-group">
+          <label for="comment">Description :</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid': submitted && f.description.errors
+            }"
+            rows="3"
+            id="comment"
+          ></textarea>
+          <div
+            *ngIf="submitted && f.description.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.description.errors.required">
+              Description is required
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="attribute">User Role:</label>
+          <select
+            class="form-control"
+            formControlName="role"
+            [ngClass]="{
+              'is-invalid': submitted && f.role.errors
+            }"
+            id="attribute"
+          >
+            <option value="ADMIN">ADMIN</option>
+            <option value="SUBUSER">SUBUSER</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+          <div *ngIf="f.role.errors.required">Role is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </div>
+  </form>
+</div>

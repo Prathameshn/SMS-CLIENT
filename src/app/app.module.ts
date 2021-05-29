@@ -28,6 +28,10 @@ import { P404Component } from "./views/error/404.component";
 import { P500Component } from "./views/error/500.component";
 import { LoginComponent } from "./views/login/login.component";
 import { RegisterComponent } from "./views/register/register.component";
+import { UserComponent } from "./views/catalogue/users/users.component";
+import { AddUserComponent } from "./views/catalogue/add-user/add-user.component";
+import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.component";
+
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -80,7 +84,10 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UserComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   entryComponents:[ConfirmationDialogComponent],
   providers: [
