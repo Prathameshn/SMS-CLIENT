@@ -15,6 +15,9 @@ import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.compone
 import { StoreListComponent } from "./views/catalogue/store/sub-store/sub-store-list.component";
 import { AddStoreComponent } from "./views/catalogue/store/add-store/add-store.component";
 import { EditStoreComponent } from "./views/catalogue/store/edit-store/edit-store.component";
+import { ProductComponent } from './views/catalogue/product/product.component';
+import { AddProductComponent } from './views/catalogue/add-product/add-product.component';
+import { EditProductComponent } from './views/catalogue/edit-product/edit-product.component';
 
 export const routes: Routes = [
   {
@@ -97,6 +100,27 @@ export const routes: Routes = [
         component: EditStoreComponent,
         data: {
           title: "Edit Store",
+        },
+      },
+      {
+        path: "products",
+        component: ProductComponent,
+        data: {
+          title: "Product",
+        },
+      },
+      {
+        path: "add-product",
+        component: AddProductComponent,
+        data: {
+          title: "Create Product",
+        },
+      },
+      {
+        path: "edit-product/:productId",
+        component: EditProductComponent,
+        data: {
+          title: "Edit Product",
         },
       }
     ],

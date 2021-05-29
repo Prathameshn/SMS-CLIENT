@@ -34,6 +34,9 @@ import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.compone
 import { StoreListComponent } from "./views/catalogue/store/sub-store/sub-store-list.component";
 import { AddStoreComponent } from "./views/catalogue/store/add-store/add-store.component";
 import { EditStoreComponent } from "./views/catalogue/store/edit-store/edit-store.component";
+import { ProductComponent } from './views/catalogue/product/product.component';
+import { AddProductComponent } from './views/catalogue/add-product/add-product.component';
+import { EditProductComponent } from './views/catalogue/edit-product/edit-product.component';
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -92,7 +95,10 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     EditUserComponent,
     StoreListComponent,
     AddStoreComponent,
-    EditStoreComponent
+    EditStoreComponent,
+    ProductComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   entryComponents:[ConfirmationDialogComponent],
   providers: [

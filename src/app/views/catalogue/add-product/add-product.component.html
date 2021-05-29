@@ -1,0 +1,179 @@
+<div class="container-fluid p-0">
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name">Name :</label>
+          <input
+            type="text"
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': submitted && f.name.errors
+            }"
+            class="form-control"
+            placeholder="Enter Name"
+            id="name"
+          />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="label">Description :</label>
+          <input
+            type="text"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid': submitted && f.description.errors
+            }"
+            class="form-control"
+            placeholder="Enter Description"
+            id="label"
+          />
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="label">Available Quentity :</label>
+          <input
+            type="number"
+            formControlName="availableQuantity"
+            [ngClass]="{
+              'is-invalid': submitted && f.availableQuantity.errors
+            }"
+            class="form-control"
+            placeholder="Enter Available Quentity"
+            id="label"
+          />
+          <div *ngIf="submitted && f.availableQuantity.errors" class="invalid-feedback">
+            <div *ngIf="f.availableQuantity.errors.required">Available Quentity is required</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="isEnabled"
+              [ngClass]="{
+                'is-invalid': submitted && f.isEnabled.errors
+              }"
+              type="checkbox"
+            />
+            Is Enabled
+          </label>
+          <div *ngIf="submitted && f.isEnabled.errors" class="invalid-feedback">
+            <div *ngIf="f.isEnabled.errors.required">Field is required</div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-5">
+        <div class="form-group">
+          <label for="label">Sub Categories :</label>
+          <ng-multiselect-dropdown
+            [placeholder]="subCategories"
+            [settings]="dropdownSettings"
+            [data]="subCategoriesList"
+            formControlName="subCategories"
+            (onSelect)="onItemSubSelect($event)"
+            (onSelectAll)="onSubSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+      </div> -->
+      <div class="col-md-8">
+        <mat-form-field class="example-full-width">
+          <mat-label>Store</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Sub Categories"
+            matInput
+            (keyup)="onKeyUpEvent($event)"
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of subCategoriesList"
+              [value]="option.name"
+              (onSelectionChange)="attributeSelect(option)"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-6" *ngIf="selectedSubcategoryItems.length > 0">
+        <div
+          cdkDropList
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="example-box"
+            *ngFor="let attribute of selectedSubcategoryItems"
+            cdkDrag
+          >
+            {{ attribute.name }}
+            <span>
+              <button
+                mat-mini-fab
+                color="warn"
+                (click)="deleteAttribute(attribute)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-8" *ngIf="selectedSubcategoryItems.length > 0">
+        <mat-card>
+          <p>Selected Sub Categories</p>
+          <hr />
+          <div
+            cdkDropList
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let attribute of selectedSubcategoryItems"
+              cdkDrag
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text_name">
+                  {{ attribute.name | uppercase }}
+                </div>
+                <mat-chip-list>
+                  <mat-chip color="primary" selected>{{
+                    attribute.descreption | uppercase
+                  }}</mat-chip>
+                </mat-chip-list>
+                <div>
+                  <button
+                    mat-mini-fab
+                    color="warn"
+                    (click)="deleteAttribute(attribute)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </div>
+  </form>
+</div>
