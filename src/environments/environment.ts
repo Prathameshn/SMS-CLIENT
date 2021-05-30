@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   // base_url: "https://api.cosmonest.com/v1/",
-  base_url: "http://localhost:3000/v1/",
+  base_url: "http://35.154.153.33:5000/v1/",
 };
