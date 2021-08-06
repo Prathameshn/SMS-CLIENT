@@ -3,28 +3,49 @@ import { Router } from "@angular/router";
 import { CategoryService } from "../../../services/product/product.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "../../../shared/confirmation-dialog/confirmation-dialog.component";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from "@angular/forms";
 
 @Component({
   selector: "app-category",
-  templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"],
+  templateUrl: "./filterCourses.component.html",
+  styleUrls: ["./filterCourses.component.scss"],
 })
-export class ProductComponent implements OnInit {
+export class FilterCoursesComponent implements OnInit {
   categoryList: Array<any> = [];
   myAllStore:Array<any> = [];
   count: Number = 0;
   public pageSize = 8;
   public currentPage = 1;
   searchValue: String = "";
+  id: String;
+  categoryForm: FormGroup;
+  loading = false;
+  submitted = false;
+  myControl = new FormControl();
+  subcategoriesList: any = [];
+  totalSubcategories: any = [];
+  selectedSubcategories: any = [];
 
   constructor(
     private _category: CategoryService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.getListCategories()
+    this.categoryForm = this.formBuilder.group({
+      gpa: ["", Validators.required],
+      gre: ["", Validators.required],
+      country: ["", Validators.required],
+      course:[""],
+    });
   }
 
   getListCategories() {
@@ -64,6 +85,11 @@ export class ProductComponent implements OnInit {
     this.searchValue = "";
     this.currentPage = 1;
     this.getListCategories();
+  }
+
+
+  search() {
+    alert("")
   }
 
   onChangeCategoryType(store) {
@@ -186,7 +212,27 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  navigateToAddCategory() {
-    this.router.navigate(["/add-courses"]);
+  onSubmit() {
+    this.submitted = true;
+    if (this.categoryForm.invalid) {
+      return;
+    }
+    let obj = {
+      ...this.categoryForm.value,
+    };
+    this.loading = true;
+
+    this._category.getAllFilterCourses(obj.gpa,obj.gre,obj.country,obj.course).subscribe(
+      (res) => {
+        if (res && res.length > 0) {
+          this.categoryList = res;
+        }else{
+          this.categoryList = [];
+        }
+      },
+      (err) => {
+        console.log("err", err);
+      }
+    );
   }
 }

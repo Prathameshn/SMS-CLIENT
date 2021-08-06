@@ -12,7 +12,7 @@ export class SubCategoryService {
 
   addSubCategory(attrObj) {
     return this.http
-      .post<any>(`${environment.base_url}store`, attrObj)
+      .post<any>(`${environment.base_url}university`, attrObj)
       .pipe(
         map((response) => {
           //   console.log("attribute", response);
@@ -25,7 +25,7 @@ export class SubCategoryService {
   getSubCategoryList(page, perPage) {
     return this.http
       .get<any>(
-        `${environment.base_url}store?page=${page}&perPage=${perPage}`
+        `${environment.base_url}university?page=${page}&perPage=${perPage}`
       )
       .pipe(
         map((response) => {
@@ -39,9 +39,9 @@ export class SubCategoryService {
   getSubCategoriesBySearch(page, perPage, query?, storeKeeper?) {
     let url;
     if (storeKeeper !== undefined) {
-      url = `${environment.base_url}store?page=${page}&perPage=${perPage}&search=${query}&storeKeeper=${storeKeeper}`;
+      url = `${environment.base_url}university?page=${page}&perPage=${perPage}&search=${query}&storeKeeper=${storeKeeper}`;
     } else {
-      url = `${environment.base_url}store?page=${page}&perPage=${perPage}&search=${query}`;
+      url = `${environment.base_url}university?page=${page}&perPage=${perPage}&search=${query}`;
     }
     return this.http.get<any>(`${url}`).pipe(
       map((response) => {
@@ -55,20 +55,8 @@ export class SubCategoryService {
   changePage(page, perPage) {
     return this.http
       .get<any>(
-        `${environment.base_url}store?page=${page}&perPage=${perPage}`
+        `${environment.base_url}university?page=${page}&perPage=${perPage}`
       )
-      .pipe(
-        map((response) => {
-          // console.log("get attribute", response);
-          return response;
-        }),
-        catchError(this.errorHandler)
-      );
-  }
-
-  getAttributesList(query) {
-    return this.http
-      .get<any>(`${environment.base_url}users?name=${query}`)
       .pipe(
         map((response) => {
           // console.log("get attribute", response);
@@ -80,7 +68,7 @@ export class SubCategoryService {
 
   getSubCategoryById(id) {
     return this.http
-      .get<any>(`${environment.base_url}store/${id}`)
+      .get<any>(`${environment.base_url}university/${id}`)
       .pipe(
         map((res) => {
           return res;
@@ -91,13 +79,13 @@ export class SubCategoryService {
 
   updateSubCategory(id, attribute) {
     return this.http
-      .patch<any>(`${environment.base_url}store/${id}`, attribute)
+      .patch<any>(`${environment.base_url}university/${id}`, attribute)
       .pipe(catchError(this.errorHandler));
   }
 
   deleteSubCategory(id) {
     return this.http
-      .delete<any>(`${environment.base_url}store/${id}`)
+      .delete<any>(`${environment.base_url}university/${id}`)
       .pipe(catchError(this.errorHandler));
   }
 

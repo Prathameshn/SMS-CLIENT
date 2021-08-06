@@ -21,139 +21,79 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label for="label">Location :</label>
+          <label for="label">Country :</label>
           <input
             type="text"
-            formControlName="location"
+            formControlName="country"
             [ngClass]="{
-              'is-invalid': submitted && f.location.errors
+              'is-invalid': submitted && f.country.errors
             }"
             class="form-control"
-            placeholder="Enter Location"
-            id="location"
+            placeholder="Enter Country"
+            id="country"
           />
-          <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-            <div *ngIf="f.location.errors.required">Location is required</div>
+          <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+            <div *ngIf="f.country.errors.required">Country is required</div>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label for="label">Phone :</label>
+          <label for="label">Minimum GPA :</label>
           <input
             type="text"
-            formControlName="phone"
+            formControlName="minimum_gpa"
             [ngClass]="{
-              'is-invalid': submitted && f.phone.errors
+              'is-invalid': submitted && f.minimum_gpa.errors
             }"
             class="form-control"
-            placeholder="Enter Phone"
-            id="phone"
+            placeholder="Enter Minimum GPA"
+            id="minimum_gpa"
           />
-          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-            <div *ngIf="f.phone.errors.required">Phone is required</div>
+          <div *ngIf="submitted && f.minimum_gpa.errors" class="invalid-feedback">
+            <div *ngIf="f.minimum_gpa.errors.required">Minimum GPA is required</div>
           </div>
         </div>
       </div>
-      <!-- <div class="col-md-4">
-        <div class="form-group form-check">
-          <label class="form-check-label">
-            <input
-              class="form-check-input"
-              formControlName="isEnabled"
-              [ngClass]="{
-                'is-invalid': submitted && f.isEnabled.errors
-              }"
-              type="checkbox"
-            />
-            Is Enabled
-          </label>
-          <div *ngIf="submitted && f.isEnabled.errors" class="invalid-feedback">
-            <div *ngIf="f.isEnabled.errors.required">Field is required</div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="label">Minimum GRE Score :</label>
+          <input
+            type="text"
+            formControlName="minimum_gre_score"
+            [ngClass]="{
+              'is-invalid': submitted && f.minimum_gre_score.errors
+            }"
+            class="form-control"
+            placeholder="Enter Minimum GRE Score"
+            id="minimum_gre_score"
+          />
+          <div *ngIf="submitted && f.minimum_gre_score.errors" class="invalid-feedback">
+            <div *ngIf="f.minimum_gre_score.errors.required">Minimum GRE Score is required</div>
           </div>
         </div>
-      </div> -->
-      <!-- <div class="col-md-12">
+      </div>
+      <div class="col-md-12">
         <div class="form-group">
-          <label for="label">Phone :</label>
+          <label for="comment">Description :</label>
           <textarea
             class="form-control"
-            formControlName="phone"
+            formControlName="description"
             [ngClass]="{
-              'is-invalid': submitted && f.phone.errors
+              'is-invalid': submitted && f.description.errors
             }"
             rows="3"
-            id="phone"
+            id="comment"
           ></textarea>
           <div
-            *ngIf="submitted && f.phone.errors"
+            *ngIf="submitted && f.description.errors"
             class="invalid-feedback"
           >
-            <div *ngIf="f.phone.errors.required">
-              Phone is required
+            <div *ngIf="f.description.errors.required">
+              Description is required
             </div>
           </div>
         </div>
-      </div> -->
-      <div class="col-md-8">
-        <mat-form-field class="example-full-width">
-          <mat-label>Store Keeper</mat-label>
-          <input
-            type="text"
-            placeholder="Please type and Pick one"
-            aria-label="Attributes"
-            matInput
-            (keyup)="onKeyUpEvent($event)"
-            [formControl]="myControl"
-            [matAutocomplete]="auto"
-          />
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of attributesList"
-              [value]="option.name"
-              (onSelectionChange)="attributeSelect(option)"
-            >
-              {{ option.name }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
-      <div class="col-md-8" *ngIf="selectedAttributes.length > 0">
-        <mat-card>
-          <p>Selected Store Keeper</p>
-          <hr />
-          <div
-            cdkDropList
-            class="example-list"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div
-              class="example-box"
-              *ngFor="let attribute of selectedAttributes"
-              cdkDrag
-            >
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="text_name">
-                  {{ attribute.name | uppercase }}
-                </div>
-                <mat-chip-list>
-                  <mat-chip color="primary" selected>{{
-                    attribute.label | uppercase
-                  }}</mat-chip>
-                </mat-chip-list>
-                <div>
-                  <button
-                    mat-mini-fab
-                    color="warn"
-                    (click)="deleteAttribute(attribute)"
-                  >
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-card>
       </div>
     </div>
     <div class="d-flex justify-content-end mb-3">

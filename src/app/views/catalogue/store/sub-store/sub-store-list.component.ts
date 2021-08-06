@@ -10,7 +10,7 @@ import { ConfirmationDialogComponent } from "../../../../shared/confirmation-dia
   styleUrls: ["./sub-store-list.component.scss"],
 })
 export class StoreListComponent implements OnInit {
-  subCategoryList: Array<any> = [];
+  universityList: Array<any> = [];
   count: Number = 0;
   public pageSize = 8;
   public currentPage = 1;
@@ -39,8 +39,8 @@ export class StoreListComponent implements OnInit {
       .subscribe(
         (res) => {
           // console.log("res", res);
-          if (res.stores && res.stores.length > 0) {
-            this.subCategoryList = res.stores;
+          if (res.Universities && res.Universities.length > 0) {
+            this.universityList = res.Universities;
             this.count = res.count;
           }
         },
@@ -72,7 +72,7 @@ export class StoreListComponent implements OnInit {
         )
         .subscribe(
           (res) => {
-            this.subCategoryList = res.stores;
+            this.universityList = res.Universities;
             this.count = res.count;
             // if (res.categorys && res.categorys.length > 0) {
             // }
@@ -92,8 +92,8 @@ export class StoreListComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          if (res.stores && res.stores.length > 0) {
-            this.subCategoryList = res.stores;
+          if (res.Universities && res.Universities.length > 0) {
+            this.universityList = res.Universities;
             this.count = res.count;
           }
         },
@@ -110,8 +110,8 @@ export class StoreListComponent implements OnInit {
     this.subCategory.changePage(this.currentPage, this.pageSize).subscribe(
       (res) => {
         // console.log("res", res);
-        if (res.stores && res.stores.length > 0) {
-          this.subCategoryList = res.stores;
+        if (res.Universities && res.Universities.length > 0) {
+          this.universityList = res.Universities;
           this.count = res.count;
         }
       },
@@ -130,7 +130,7 @@ export class StoreListComponent implements OnInit {
       (result) => {
         if (result) {
           this.subCategory.deleteSubCategory(id).subscribe((res) => {
-            this.subCategoryList = this.subCategoryList.filter(
+            this.universityList = this.universityList.filter(
               (item) => item.id !== id
             );
             this.getListSubCategories();
@@ -177,7 +177,7 @@ export class StoreListComponent implements OnInit {
 
   deleteSubCategory(id) {
     this.subCategory.deleteSubCategory(id).subscribe((res) => {
-      this.subCategoryList = this.subCategoryList.filter(
+      this.universityList = this.universityList.filter(
         (item) => item.id !== id
       );
       this.getListSubCategories();
@@ -186,6 +186,6 @@ export class StoreListComponent implements OnInit {
   }
 
   navigateToAddSubCategory() {
-    this.router.navigate(["/add-stores"]);
+    this.router.navigate(["/add-universities"]);
   }
 }

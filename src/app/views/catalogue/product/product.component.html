@@ -2,22 +2,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="d-flex justify-content-end align-items-baseline pb-2">
-        <div class="form-group pr-2">
-          <!-- <label for="sel1">Select:</label> -->
-          <select
-            class="form-control"
-            (change)="onChangeCategoryType($event.target.value)"
-            id="sel1"
-          >
-            <option *ngFor="let item of myAllStore; let i = index" value="{{item.id}}" >{{item.name}}</option>
-          </select>
-        </div>
+        
         <button
           type="submit"
           class="btn btn-primary"
           (click)="navigateToAddCategory()"
         >
-          Add Product
+          Add Course
         </button>
         <!-- <div class="pl-2">
           <mat-form-field class="example-form-field">
@@ -49,27 +40,23 @@
         <thead class="thead-dark">
           <tr>
             <th>Name</th>
-            <th>Description</th>
-            <th>Store</th>
-            <th>Available Count</th>
+            <th>teacherName</th>
+            <th>University</th>
             <th>Operations</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of categoryList; let i = index">
             <td>{{ item.name }}</td>
-            <td>{{ item.description }}</td>
+            <td>{{ item.teacherName }}</td>
             <td class="text-center">
-              {{ item.store.name }}
-            </td>
-            <td>
-              {{ item.availableQuantity }}
+              {{ item.university.name }}
             </td>
             <td>
               <div class="d-flex align-items-center justify-content-around">
                 <button mat-mini-fab color="primary">
                   <a
-                    [routerLink]="['/edit-product/', item.id]"
+                    [routerLink]="['/edit-courses/', item.id]"
                     class="text-white"
                   >
                     <mat-icon>mode_edit</mat-icon>

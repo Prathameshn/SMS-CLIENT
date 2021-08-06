@@ -46,9 +46,8 @@ export class EditProductComponent implements OnInit {
     this.id = this.route.snapshot.params["productId"];
     this.categoryForm = this.formBuilder.group({
       name: ["", Validators.required],
-      description: ["", Validators.required],
-      availableQuantity: [0, Validators.required],
-      subCategories: [[""], Validators.required],
+      university: ["", Validators.required],
+      teacherName: ["", Validators.required],
     });
     this.getcategoryById();
   }
@@ -56,13 +55,13 @@ export class EditProductComponent implements OnInit {
   getcategoryById() {
     this._category.getCategoryById(this.id).subscribe(
       (res) => {
+        console.log(res)
         this.categoryForm.patchValue({
           name: res.name,
-          description: res.description,
-          store: res.store,
-          availableQuantity: res.availableQuantity,
+          university: res.university,
+          teacherName: res.teacherName,
         });
-        this.selectedSubcategories = [res.store]
+        this.selectedSubcategories = [res.university]
       },
       (err) => {
         console.log("data", err);
@@ -73,8 +72,10 @@ export class EditProductComponent implements OnInit {
   onKeyUpEvent(event: any) {
     this._category.getSubcategoryListByQuery(event.target.value).subscribe(
       (res) => {
-        if (res.stores && res.stores.length > 0) {
-          this.subcategoriesList = res.stores;
+        if (res.Universities && res.Universities.length > 0) {
+          this.subcategoriesList = res.Universities;
+        }else{
+          this.subcategoriesList =[]
         }
       },
       (error) => {
@@ -157,7 +158,7 @@ export class EditProductComponent implements OnInit {
     this.loading = true;
     this._category.updateCategory(this.id, obj).subscribe({
       next: () => {
-        this.router.navigate(["/products"]);
+        this.router.navigate(["/courses"]);
       },
       error: (error) => {
         console.log("error", error);

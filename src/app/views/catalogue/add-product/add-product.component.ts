@@ -40,9 +40,8 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
     this.categoryForm = this.formBuilder.group({
       name: ["", Validators.required],
-      description: ["", Validators.required],
-      availableQuantity: [0, Validators.required],
-      subCategories: [[""], Validators.required],
+      university: ["", Validators.required],
+      teacherName: ["", Validators.required],
     });
   }
 
@@ -51,8 +50,10 @@ export class AddProductComponent implements OnInit {
     this._category.getSubcategoryListByQuery(event.target.value).subscribe(
       (res) => {
         // console.log("data", res);
-        if (res.stores && res.stores.length > 0) {
-          this.subCategoriesList = res.stores;
+        if (res.Universities && res.Universities.length > 0) {
+          this.subCategoriesList = res.Universities;
+        }else{
+          this.subCategoriesList =[]
         }
       },
       (error) => {
@@ -102,17 +103,17 @@ export class AddProductComponent implements OnInit {
   onSubmit() {
     console.log("clcked");
     this.submitted = true;
-    if (this.categoryForm.invalid) {
-      return;
-    }
+    // if (this.categoryForm.invalid) {
+    //   return;
+    // }
     let obj = {
       ...this.categoryForm.value,
-      store: this.selectedSubcategoryItems[0].id,
+      university: this.selectedSubcategoryItems[0].id,
     };
     this.loading = true;
     this._category.addCategory(obj).subscribe({
       next: () => {
-        this.router.navigate(["/products"]);
+        this.router.navigate(["/courses"]);
       },
       error: (error) => {
         console.log("error", error);

@@ -1,0 +1,151 @@
+<div class="container-fluid p-0">
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="gpa">GPA* :</label>
+          <input
+            type="number"
+            formControlName="gpa"
+            [ngClass]="{
+              'is-invalid': submitted && f.gpa.errors
+            }"
+            class="form-control"
+            placeholder="Enter GPA"
+            id="gpa"
+          />
+          <div *ngIf="submitted && f.gpa.errors" class="invalid-feedback">
+            <div *ngIf="f.gpa.errors.required">GPA is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="gre">GRE Score* :</label>
+          <input
+            type="number"
+            formControlName="gre"
+            [ngClass]="{
+              'is-invalid': submitted && f.gre.errors
+            }"
+            class="form-control"
+            placeholder="Enter GRE"
+            id="gre"
+          />
+          <div *ngIf="submitted && f.gre.errors" class="invalid-feedback">
+            <div *ngIf="f.gre.errors.required">GRE is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="country">Country* :</label>
+          <input
+            type="text"
+            formControlName="country"
+            [ngClass]="{
+              'is-invalid': submitted && f.country.errors
+            }"
+            class="form-control"
+            placeholder="Enter Country"
+            id="country"
+          />
+          <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+            <div *ngIf="f.country.errors.required">Country is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="course">Course Name :</label>
+          <input
+            type="text"
+            formControlName="course"
+            [ngClass]="{
+              'is-invalid': submitted && f.course.errors
+            }"
+            class="form-control"
+            placeholder="Enter course Name "
+            id="label"
+          />
+          <div *ngIf="submitted && f.course.errors" class="invalid-feedback">
+            <div *ngIf="f.course.errors.required">Teacher Name  is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button type="submit" class="btn btn-primary px-4">Search</button>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-end align-items-baseline pb-2">
+        
+        <!-- <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="navigateToAddCategory()"
+        >
+         Search
+        </button> -->
+        <!-- <div class="pl-2">
+          <mat-form-field class="example-form-field">
+            <mat-label>Search</mat-label>
+            <input matInput type="text" [(ngModel)]="searchValue" />
+            <button
+              mat-button
+              *ngIf="searchValue"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="clearSearch()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <button
+            mat-mini-fab
+            type="button"
+            [disabled]="searchValue === ''"
+            color="primary"
+            (click)="categorySearch()"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </div> -->
+      </div>
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>teacherName</th>
+            <th>University</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of categoryList; let i = index">
+            <td>{{ item.name }}</td>
+            <td>{{ item.teacherName }}</td>
+            <td class="text-center">
+              {{ item.university.name }}
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end">
+        <mat-paginator
+          #paginator
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[5, 8, 10, 20, 25, 50, 100]"
+          [showFirstLastButtons]="false"
+          [length]="count"
+          (page)="handlePage($event)"
+        >
+        </mat-paginator>
+        <!-- [pageIndex]="currentPage" -->
+      </div>
+    </div>
+  </div>
+</div>

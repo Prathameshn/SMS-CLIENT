@@ -40,24 +40,17 @@ export class AddStoreComponent implements OnInit {
   ngOnInit(): void {
     this.subCategoryForm = this.formBuilder.group({
       name: ["", Validators.required],
-      location: ["", Validators.required],
-      phone: ["", Validators.required],
-      attributes: [[""]],
+      minimum_gre_score: ["", Validators.required],
+      minimum_gpa: ["", Validators.required],
+      country: ["", Validators.required],
+      description: ["", Validators.required]
     });
   }
 
   onKeyUpEvent(event: any) {
     // console.log(event.target.value);
     if(event.target.value.length){
-      this.subCategory.getAttributesList(event.target.value).subscribe(
-        (res) => {
-          console.log("data", res);
-          this.attributesList = res.users;
-        },
-        (error) => {
-          console.log("error", error);
-        }
-      );
+
     }
   }
 
@@ -92,13 +85,12 @@ export class AddStoreComponent implements OnInit {
     }
     let obj = {
       ...this.subCategoryForm.value,
-      storeKeeper: this.selectedAttributes[0].id,
     };
     this.loading = true;
     this.subCategory.addSubCategory(obj).subscribe({
       next: () => {
         // get return url from query parameters or default to home page
-        this.router.navigate(["/stores"]);
+        this.router.navigate(["/universities"]);
       },
       error: (error) => {
         console.log("error", error);

@@ -26,17 +26,13 @@ import { DefaultLayoutComponent } from "./containers";
 
 import { P404Component } from "./views/error/404.component";
 import { P500Component } from "./views/error/500.component";
-import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
-import { UserComponent } from "./views/catalogue/users/users.component";
-import { AddUserComponent } from "./views/catalogue/add-user/add-user.component";
-import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.component";
 import { StoreListComponent } from "./views/catalogue/store/sub-store/sub-store-list.component";
 import { AddStoreComponent } from "./views/catalogue/store/add-store/add-store.component";
 import { EditStoreComponent } from "./views/catalogue/store/edit-store/edit-store.component";
 import { ProductComponent } from './views/catalogue/product/product.component';
 import { AddProductComponent } from './views/catalogue/add-product/add-product.component';
 import { EditProductComponent } from './views/catalogue/edit-product/edit-product.component';
+import { FilterCoursesComponent } from './views/catalogue/filterCourses/filterCourses.component'
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -55,7 +51,6 @@ import { AppRoutingModule } from "./app.routing";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
-import { TokenInterceptor } from "./helpers/token.interceptor";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { MaterialModule } from './angular-material.module';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
@@ -87,18 +82,14 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
-    LoginComponent,
-    RegisterComponent,
     ConfirmationDialogComponent,
-    UserComponent,
-    AddUserComponent,
-    EditUserComponent,
     StoreListComponent,
     AddStoreComponent,
     EditStoreComponent,
     ProductComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    FilterCoursesComponent
   ],
   entryComponents:[ConfirmationDialogComponent],
   providers: [
@@ -106,8 +97,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
-    IconSetService,
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    IconSetService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

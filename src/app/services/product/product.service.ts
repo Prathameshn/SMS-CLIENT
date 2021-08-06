@@ -12,7 +12,7 @@ export class CategoryService {
 
   addCategory(attrObj) {
     return this.http
-      .post<any>(`${environment.base_url}product`, attrObj)
+      .post<any>(`${environment.base_url}course`, attrObj)
       .pipe(
         map((response) => {
           //   console.log("attribute", response);
@@ -25,7 +25,7 @@ export class CategoryService {
   getCategoryList(page, perPage) {
     return this.http
       .get<any>(
-        `${environment.base_url}product?page=${page}&perPage=${perPage}`
+        `${environment.base_url}course?page=${page}&perPage=${perPage}`
       )
       .pipe(
         map((response) => {
@@ -39,7 +39,7 @@ export class CategoryService {
   changePage(page, perPage) {
     return this.http
       .get<any>(
-        `${environment.base_url}product?page=${page}&perPage=${perPage}`
+        `${environment.base_url}course?page=${page}&perPage=${perPage}`
       )
       .pipe(
         map((response) => {
@@ -52,7 +52,7 @@ export class CategoryService {
 
   getSubcategoryListByQuery(query) {
     return this.http
-      .get<any>(`${environment.base_url}store?name=${query}`)
+      .get<any>(`${environment.base_url}university?search=${query}`)
       .pipe(
         map((response) => {
           // console.log("get attribute", response);
@@ -65,9 +65,9 @@ export class CategoryService {
   getCategoriesBySearch(page, perPage, query?, store?) {
     let url;
     if (store !== undefined) {
-      url = `${environment.base_url}product?page=${page}&perPage=${perPage}&search=${query}&store=${store}`;
+      url = `${environment.base_url}course?page=${page}&perPage=${perPage}&search=${query}&store=${store}`;
     } else {
-      url = `${environment.base_url}product?page=${page}&perPage=${perPage}&search=${query}`;
+      url = `${environment.base_url}course?page=${page}&perPage=${perPage}&search=${query}`;
     }
     return this.http.get<any>(`${url}`).pipe(
       map((response) => {
@@ -80,7 +80,7 @@ export class CategoryService {
 
   getCategoryById(id) {
     return this.http
-      .get<any>(`${environment.base_url}product/${id}`)
+      .get<any>(`${environment.base_url}course/${id}`)
       .pipe(
         map((res) => {
           return res;
@@ -91,13 +91,13 @@ export class CategoryService {
 
   updateCategory(id, attribute) {
     return this.http
-      .patch<any>(`${environment.base_url}product/${id}`, attribute)
+      .patch<any>(`${environment.base_url}course/${id}`, attribute)
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCategory(id) {
     return this.http
-      .delete<any>(`${environment.base_url}product/${id}`)
+      .delete<any>(`${environment.base_url}course/${id}`)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -109,5 +109,19 @@ export class CategoryService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  getAllFilterCourses(gpa?, gre?, country?, course?){
+    return this.http
+      .get<any>(
+        `${environment.base_url}/university/filter?GPA=${gpa}&GRE=${gre}&country=${country}&course=${course}`
+      )
+      .pipe(
+        map((response) => {
+          console.log("get attribute", response);
+          return response;
+        }),
+        catchError(this.errorHandler)
+      );
   }
 }

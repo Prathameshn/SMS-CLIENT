@@ -2,18 +2,18 @@ import { INavData } from "@coreui/angular";
 
 export const navItems: INavData[] = [
   {
-    name: "Users",
-    url: "/users",
+    name: "universities",
+    url: "/universities",
     icon: "icon-puzzle",
   },
   {
-    name: "Stores",
-    url: "/stores",
+    name: "Courses",
+    url: "/courses",
     icon: "icon-puzzle",
   },
   {
-    name: "Products",
-    url: "/products",
+    name: "Filter",
+    url: "/filter",
     icon: "icon-puzzle",
   }
 ];
@@ -21,13 +21,18 @@ export const navItems: INavData[] = [
 
 export const subUserNavItems: INavData[] = [ 
   {
-    name: "Stores",
-    url: "/stores",
+    name: "universities",
+    url: "/universities",
     icon: "icon-puzzle",
   },
   {
-    name: "Products",
-    url: "/products",
+    name: "Courses",
+    url: "/courses",
+    icon: "icon-puzzle",
+  },
+  {
+    name: "Filter",
+    url: "/filter",
     icon: "icon-puzzle",
   }
 ];

@@ -1,10 +1,9 @@
 {
-  "name": "store-management-system",
+  "name": "education-management",
   "version": "2.11.1",
-  "description": "Maintain store content",
+  "description": "Education management",
   "author": {
     "name": "Prathmesh Naik",
-    "github": "https://github.com/mrholek",
     "linkedIn": "https://www.linkedin.com/in/prathmesh-naik-7748b19a/"
   },
   "homepage": "http://localhost:4200",

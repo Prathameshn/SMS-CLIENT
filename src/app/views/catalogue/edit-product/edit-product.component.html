@@ -21,61 +21,25 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label for="label">Description :</label>
+          <label for="label">Teacher Name :</label>
           <input
             type="text"
-            formControlName="description"
+            formControlName="teacherName"
             [ngClass]="{
-              'is-invalid': submitted && f.description.errors
+              'is-invalid': submitted && f.teacherName.errors
             }"
             class="form-control"
-            placeholder="Enter Description"
+            placeholder="Enter Teacher Name "
             id="label"
           />
-          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-            <div *ngIf="f.description.errors.required">Description is required</div>
+          <div *ngIf="submitted && f.teacherName.errors" class="invalid-feedback">
+            <div *ngIf="f.teacherName.errors.required">Teacher Name  is required</div>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
-          <label for="label">Available Quentity :</label>
-          <input
-            type="number"
-            formControlName="availableQuantity"
-            [ngClass]="{
-              'is-invalid': submitted && f.availableQuantity.errors
-            }"
-            class="form-control"
-            placeholder="Enter Available Quentity"
-            id="label"
-          />
-          <div *ngIf="submitted && f.availableQuantity.errors" class="invalid-feedback">
-            <div *ngIf="f.availableQuantity.errors.required">Available Quentity is required</div>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="col-md-4">
-        <div class="form-group form-check">
-          <label class="form-check-label">
-            <input
-              class="form-check-input"
-              formControlName="isEnabled"
-              [ngClass]="{
-                'is-invalid': submitted && f.isEnabled.errors
-              }"
-              type="checkbox"
-            />
-            Is Enabled
-          </label>
-          <div *ngIf="submitted && f.isEnabled.errors" class="invalid-feedback">
-            <div *ngIf="f.isEnabled.errors.required">Field is required</div>
-          </div>
-        </div>
-      </div> -->
-     <div class="col-md-8">
         <mat-form-field class="example-full-width">
-          <mat-label>Store</mat-label>
+          <mat-label>University</mat-label>
           <input
             type="text"
             placeholder="Pick one"
@@ -96,7 +60,7 @@
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <!-- <div class="col-md-6" *ngIf="selectedSubcategories.length > 0">
+      <!-- <div class="col-md-6" *ngIf="selectedSubcategoryItems.length > 0">
         <div
           cdkDropList
           class="example-list"
@@ -104,7 +68,7 @@
         >
           <div
             class="example-box"
-            *ngFor="let attribute of selectedSubcategories"
+            *ngFor="let attribute of selectedSubcategoryItems"
             cdkDrag
           >
             {{ attribute.name }}
@@ -140,7 +104,7 @@
                 </div>
                 <mat-chip-list>
                   <mat-chip color="primary" selected>{{
-                    attribute.code | uppercase
+                    attribute.descreption | uppercase
                   }}</mat-chip>
                 </mat-chip-list>
                 <div>

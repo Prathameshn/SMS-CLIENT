@@ -8,7 +8,6 @@ import {
 import { Router, ActivatedRoute } from "@angular/router";
 import { SubCategoryService } from "../../../../services/store/store.service";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { AttributeService } from "../../../../services/user/user.service";
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -36,7 +35,6 @@ export class EditStoreComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private attribute: AttributeService,
     private formBuilder: FormBuilder,
     private subCategory: SubCategoryService,
     private _snackBar: MatSnackBar
@@ -46,22 +44,16 @@ export class EditStoreComponent implements OnInit {
     this.id = this.route.snapshot.params["storeId"];
     this.subCategoryForm = this.formBuilder.group({
       name: ["", Validators.required],
-      location: ["", Validators.required],
-      phone: ["", Validators.required],
-      attributes: [[""]]
+      minimum_gre_score: ["", Validators.required],
+      minimum_gpa: ["", Validators.required],
+      country: ["", Validators.required],
+      description: ["", Validators.required]
     });
     this.getSubCategoryById();
   }
 
   onKeyUpEvent(event: any) {
-    this.subCategory.getAttributesList(event.target.value).subscribe(
-      (res) => {
-        this.attributesList = res.users;
-      },
-      (error) => {
-        console.log("error", error);
-      }
-    );
+    
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -106,11 +98,11 @@ export class EditStoreComponent implements OnInit {
         // console.log("res", res);
         this.subCategoryForm.patchValue({
           name: res.name,
-          location: res.location,
-          phone: res.phone,
-          storeKeeper: res.storeKeeper,
+          minimum_gre_score:res.minimum_gre_score,
+          minimum_gpa:res.minimum_gpa,
+          country:res.country,
+          description:res.description
         });
-        this.selectedAttributes = [res.storeKeeper]
       },
       (err) => {
         console.log("data", err);
@@ -124,13 +116,12 @@ export class EditStoreComponent implements OnInit {
     }
     let obj = {
       ...this.subCategoryForm.value,
-      storeKeeper: this.selectedAttributes[0].id,
     };
     this.loading = true;
     this.subCategory.updateSubCategory(this.id, obj).subscribe({
       next: () => {
         // get return url from query parameters or default to home page
-        this.router.navigate(["/stores"]);
+        this.router.navigate(["/universities"]);
       },
       error: (error) => {
         console.log("error", error);

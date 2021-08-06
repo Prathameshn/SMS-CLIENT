@@ -12,10 +12,7 @@ export class DefaultLayoutComponent implements OnInit {
 
   constructor(private router: Router) {}
   ngOnInit() {
-    let userRole = localStorage.getItem("role");
-    if (userRole != undefined && userRole != null) {
-      this.navItems = userRole === "ADMIN" ? navItems : subUserNavItems;
-    }
+      this.navItems =  navItems ? navItems : subUserNavItems;
   }
   toggleMinimize(e) {
     this.sidebarMinimized = e;

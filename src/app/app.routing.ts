@@ -6,23 +6,18 @@ import { DefaultLayoutComponent } from "./containers";
 
 import { P404Component } from "./views/error/404.component";
 import { P500Component } from "./views/error/500.component";
-import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
-import { AdminGuard } from "./admin/admin.guard";
-import { UserComponent } from "./views/catalogue/users/users.component";
-import { AddUserComponent } from "./views/catalogue/add-user/add-user.component";
-import { EditUserComponent } from "./views/catalogue/edit-user/edit-user.component";
 import { StoreListComponent } from "./views/catalogue/store/sub-store/sub-store-list.component";
 import { AddStoreComponent } from "./views/catalogue/store/add-store/add-store.component";
 import { EditStoreComponent } from "./views/catalogue/store/edit-store/edit-store.component";
 import { ProductComponent } from './views/catalogue/product/product.component';
 import { AddProductComponent } from './views/catalogue/add-product/add-product.component';
 import { EditProductComponent } from './views/catalogue/edit-product/edit-product.component';
+import { FilterCoursesComponent } from './views/catalogue/filterCourses/filterCourses.component'
 
 export const routes: Routes = [
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "universities",
     pathMatch: "full",
   },
   {
@@ -40,20 +35,6 @@ export const routes: Routes = [
     },
   },
   {
-    path: "login",
-    component: LoginComponent,
-    data: {
-      title: "Login Page",
-    },
-  },
-  {
-    path: "register",
-    component: RegisterComponent,
-    data: {
-      title: "Register Page",
-    },
-  },
-  {
     path: "",
     component: DefaultLayoutComponent,
     data: {
@@ -61,66 +42,52 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: "users",
-        component: UserComponent,
+        path: "filter",
+        component: FilterCoursesComponent,
         data: {
-          title: "User",
-        },
+          title: "Filtered Courses",
+        }
       },
       {
-        path: "add-user",
-        component: AddUserComponent,
-        data: {
-          title: "Create User",
-        },
-      },
-      {
-        path: "edit-user/:userId",
-        component: EditUserComponent,
-        data: {
-          title: "Edit User",
-        },
-      },
-      {
-        path: "stores",
+        path: "universities",
         component: StoreListComponent,
         data: {
-          title: "Store",
+          title: "Universities",
         },
       },
       {
-        path: "add-stores",
+        path: "add-universities",
         component: AddStoreComponent,
         data: {
-          title: "Create Store",
+          title: "Create Universities",
         },
       },
       {
-        path: "edit-stores/:storeId",
+        path: "edit-universities/:storeId",
         component: EditStoreComponent,
         data: {
-          title: "Edit Store",
+          title: "Edit Universities",
         },
       },
       {
-        path: "products",
+        path: "courses",
         component: ProductComponent,
         data: {
-          title: "Product",
+          title: "Courses",
         },
       },
       {
-        path: "add-product",
+        path: "add-courses",
         component: AddProductComponent,
         data: {
-          title: "Create Product",
+          title: "Create Courses",
         },
       },
       {
-        path: "edit-product/:productId",
+        path: "edit-courses/:productId",
         component: EditProductComponent,
         data: {
-          title: "Edit Product",
+          title: "Edit Courses",
         },
       }
     ],
